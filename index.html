@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day Game</title>
+    <style>
+        body {
+            background-color: #f8e0e0;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        #game-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        #heart {
+            position: absolute;
+            font-size: 30px;
+            color: #e44d26;
+            cursor: pointer;
+            transition: 0.3s ease-out;
+        }
+
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            text-align: center;
+        }
+
+        #popup img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="heart">&#10084;</div>
+    </div>
+    <div id="popup">
+        <h2>Happy Valentine's Miloo</h2>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTQ5cmttNjRka3Zrdnl2dXNlZDdiYjNvamN0YTZ5cWFpNDc4YnE1ZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/mw0ClrxEj8l3JJ4zf5/giphy.gif" alt="Dog GIF">
+    </div>
+
+    <script>
+        const heart = document.getElementById('heart');
+        const gameContainer = document.getElementById('game-container');
+        const popup = document.getElementById('popup');
+        let clickCount = 0;
+
+        heart.addEventListener('click', () => {
+            clickCount++;
+
+            if (clickCount >= 5) {
+                showPopup();
+            }
+
+            const maxX = gameContainer.clientWidth - heart.clientWidth;
+            const maxY = gameContainer.clientHeight - heart.clientHeight;
+
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+
+            heart.style.transform = `translate(${newX}px, ${newY}px)`;
+        });
+
+        function showPopup() {
+            popup.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
